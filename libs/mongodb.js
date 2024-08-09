@@ -11,6 +11,8 @@ async function connectMongoDB() {
 
     dotenv.config(); // Load environment variables from .env file
 
+    // Log the MongoDB URI to check if it's being read correctly
+    console.log("MongoDB URI:", process.env.MONGODB_URI);
 
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
@@ -26,4 +28,4 @@ async function connectMongoDB() {
   }
 }
 
-export default connectMongoDB;
+module.exports = connectMongoDB; // Use module.exports for CommonJS

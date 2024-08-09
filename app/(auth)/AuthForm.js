@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 
 
 export default function AuthForm({ handleSubmit }) {
@@ -30,6 +31,12 @@ export default function AuthForm({ handleSubmit }) {
           />
           <button className="w-full bg-white h-14 mt-8 sm:mt-14 rounded-full font-bold text-xl">Login</button>
         </form>
+        <div className="text-center text-green-300 mt-2 text-sm font-thin hover:text-white">
+          
+          <Link href={"/firsttimmer"}>
+          click here for first timer card
+          </Link>
+          </div>
     </>
   )
 }

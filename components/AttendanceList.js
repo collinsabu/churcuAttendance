@@ -4,7 +4,7 @@ import { HiPencilAlt } from "react-icons/hi";
 
 const getAttendance = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/church", {
+    const res = await fetch("/api/church", {
       cache: "no-store",
     });
 

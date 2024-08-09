@@ -82,7 +82,7 @@ const AttendanceList = () => {
               </li>
             ))
           ) : (
-            <p className="text-center text-white">No records found for this month.</p>
+            <p className="text-center text-white">No records found for this month list.</p>
           )}
         </ul>
       </div>

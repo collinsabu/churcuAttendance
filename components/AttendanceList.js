@@ -4,7 +4,9 @@ import { HiPencilAlt } from "react-icons/hi";
 
 const getAttendance = async () => {
   try {
-    const res = await fetch("/api/church", {
+    // Use an absolute URL to avoid server-side fetch issues
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://churcu-attendance.vercel.app';
+    const res = await fetch(`${baseUrl}/api/church`, {
       cache: "no-store",
     });
 
@@ -15,11 +17,20 @@ const getAttendance = async () => {
     return res.json();
   } catch (error) {
     console.log("Error loading attendance: ", error);
+    return { attendance: [] }; // Return an empty array if there's an error
   }
 };
 
 export default async function AttendanceList() {
   const { attendance } = await getAttendance();
+
+  if (!attendance || attendance.length === 0) {
+    return (
+      <div>
+        <p>No attendance data available.</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -38,7 +49,7 @@ export default async function AttendanceList() {
           <p className="mb-2">Male: {attend.maleCount}</p>
           <p className="mb-2">Female: {attend.femaleCount}</p>
           <p className="mb-2">Children: {attend.childrenCount}</p>
-          <p className="mb-2">First-Timer:{attend.firstTimerCount} </p>
+          <p className="mb-2">First-Timer: {attend.firstTimerCount}</p>
           <p className="mb-2">Offering: {attend.offeringAmount}</p>
           <p className="mb-2">Other Giving: {attend.otherSeedAmount}</p>
 
